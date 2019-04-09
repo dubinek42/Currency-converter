@@ -1,0 +1,40 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file for my currency converter server
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/"
+
+# Paths supported by the server application
+paths:
+  /currency_converter:
+    get:
+      operationId: "currency_converter.test"
+      tags:
+        - "Currency"
+        - "Converter"
+      summary: "Currency converter server application"
+      description: "Convert the amount to another currency"
+      responses:
+        200:
+          description: "Successful conversion"
+          schema:
+            type: "object"
+            properties:
+              input:
+                type: "object"
+                properties:
+                  amount:
+                    type: "number"
+                  currency:
+                    type: "string"
+              output:
+                type: "object"
+                properties:
+                  something:
+                    type: "string"
