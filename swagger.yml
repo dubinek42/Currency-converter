@@ -14,7 +14,7 @@ basePath: "/"
 paths:
   /currency_converter:
     get:
-      operationId: currency_converter.test
+      operationId: src.webapi.convert
       tags:
         - "Currency Converter"
       summary: "Currency converter server application"
@@ -25,6 +25,16 @@ paths:
           in: query
           type: number
           required: true
+        - name: input_currency
+          description: "Input currency"
+          in: query
+          type: string
+          required: true
+        - name: output_currency
+          description: "Output currency"
+          in: query
+          type: string
+          required: false
       responses:
         200:
           description: "Successful conversion"
@@ -41,5 +51,5 @@ paths:
               output:
                 type: object
                 properties:
-                  something:
-                    type: string
+                  currency:
+                    type: number

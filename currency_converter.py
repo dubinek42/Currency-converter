@@ -1,4 +1,6 @@
-print("Ar.")
+#!/usr/bin/env python3
+
+import json
 
 TESTOBJECT = {
     "input": {
@@ -11,5 +13,8 @@ TESTOBJECT = {
     }
 }
 
-def test():
-    return TESTOBJECT
+def convert(amount, input_currency, output_currency):
+    print(json.dumps(TESTOBJECT, indent=4))
+
+if __name__ == "__main__":
+    convert()
