@@ -1,6 +1,6 @@
 import json
 
-rates =  {
+rates = {
     "AED": 3.673158,
     "AFN": 77.277458,
     "ALL": 110.95,
@@ -205,6 +205,7 @@ class Converter:
         self.amount = amount
         self.input_currency = self.__symbol_translate(input_currency.upper())
         self.output_currency = self.__symbol_translate(output_currency.upper())
+        self.rates = rates
 
     @staticmethod
     def __is_number(s):
@@ -219,21 +220,20 @@ class Converter:
             return self.symbols.get(s)
         return s
 
-    @staticmethod
-    def __calculate(amount, input_currency, output_currency):
+    def __calculate(self, amount, input_currency, output_currency):
 
         if input_currency == "USD":
-            return float(rates[output_currency]) * float(amount)
+            return float(self.rates[output_currency]) * float(amount)
         else:
-            return float(amount) / float(rates[input_currency] * float(rates[output_currency]))
+            return float(amount) / float(self.rates[input_currency] * float(self.rates[output_currency]))
 
     def check_parameters(self):
         if not self.__is_number(self.amount):
             return False
-        if self.input_currency not in rates.keys():
+        if self.input_currency not in self.rates.keys():
             return False
         if self.output_currency != "" and self.output_currency is not None:
-            if self.output_currency not in rates.keys():
+            if self.output_currency not in self.rates.keys():
                 return False
         return True
 
@@ -246,7 +246,7 @@ class Converter:
         }
         output = {}
         if self.output_currency == "" or self.output_currency is None:
-            for currency in rates.keys():
+            for currency in self.rates.keys():
                 output[currency] = self.__calculate(self.amount, self.input_currency, currency)
         else:
             output[self.output_currency] = self.__calculate(self.amount, self.input_currency, self.output_currency)
