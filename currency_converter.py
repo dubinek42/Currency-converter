@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-import json
+import json, src.converter
+Converter = src.converter
 
 TESTOBJECT = {
     "input": {
@@ -14,7 +15,11 @@ TESTOBJECT = {
 }
 
 def convert(amount, input_currency, output_currency):
-    print(json.dumps(TESTOBJECT, indent=4))
+    if Converter.check_parameters(amount, input_currency, output_currency):
+        print(json.dumps(TESTOBJECT, indent=4))
+    else:
+        return False
+    
 
 if __name__ == "__main__":
-    convert()
+    convert(5.0, "CZK", "USD")

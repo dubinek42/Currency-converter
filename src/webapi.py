@@ -1,3 +1,5 @@
+import converter
+
 TESTOBJECT = {
     "input": {
         "amount": 0.9,
@@ -10,5 +12,7 @@ TESTOBJECT = {
 }
 
 def convert(amount, input_currency, output_currency = ""):
-    print(amount)
-    return TESTOBJECT
+    if converter.check_parameters(amount, input_currency, output_currency):
+        return TESTOBJECT
+    else:
+        return False
