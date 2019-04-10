@@ -14,27 +14,32 @@ basePath: "/"
 paths:
   /currency_converter:
     get:
-      operationId: "currency_converter.test"
+      operationId: currency_converter.test
       tags:
-        - "Currency"
-        - "Converter"
+        - "Currency Converter"
       summary: "Currency converter server application"
       description: "Convert the amount to another currency"
+      parameters:
+        - name: amount
+          description: "Input amount of money"
+          in: query
+          type: number
+          required: true
       responses:
         200:
           description: "Successful conversion"
           schema:
-            type: "object"
+            type: object
             properties:
               input:
-                type: "object"
+                type: object
                 properties:
                   amount:
-                    type: "number"
+                    type: number
                   currency:
-                    type: "string"
+                    type: string
               output:
-                type: "object"
+                type: object
                 properties:
                   something:
-                    type: "string"
+                    type: string
