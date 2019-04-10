@@ -1,18 +1,11 @@
-import converter
+from src.converter import Converter
+from connexion import problem
 
-TESTOBJECT = {
-    "input": {
-        "amount": 0.9,
-        "currency": "CNY"
-    },
-    "output": {
-        "AUD": 0.20,
-        "CZK": "moc",
-    }
-}
 
 def convert(amount, input_currency, output_currency = ""):
-    if converter.check_parameters(amount, input_currency, output_currency):
-        return TESTOBJECT
+    converter = Converter(amount, input_currency, output_currency)
+    if converter.check_parameters():
+        return converter.convert()
     else:
-        return False
+        return problem(400, "Bad Request", "Wrong parameters", "about:blank")
+
