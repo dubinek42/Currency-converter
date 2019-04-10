@@ -203,8 +203,8 @@ class Converter:
             data = symbols_file.read()
         self.symbols = json.loads(data)
         self.amount = amount
-        self.input_currency = self.__symbol_translate(input_currency)
-        self.output_currency = self.__symbol_translate(output_currency)
+        self.input_currency = self.__symbol_translate(input_currency.upper())
+        self.output_currency = self.__symbol_translate(output_currency.upper())
 
     @staticmethod
     def __is_number(s):
@@ -219,7 +219,8 @@ class Converter:
             return self.symbols.get(s)
         return s
 
-    def __calculate(self, amount, input_currency, output_currency):
+    @staticmethod
+    def __calculate(amount, input_currency, output_currency):
 
         if input_currency == "USD":
             return float(rates[output_currency]) * float(amount)
