@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 import json
+import argparse
 from src.converter import Converter
 
 
-def convert(amount, input_currency, output_currency = ""):
+def convert(amount, input_currency, output_currency):
     try:
         converter = Converter(amount, input_currency, output_currency)
         if converter.check_parameters():
@@ -17,4 +18,9 @@ def convert(amount, input_currency, output_currency = ""):
     
 
 if __name__ == "__main__":
-    convert("1.0", "CZK")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-a", "--amount", type=float, required=True, help="AAAAAAaaamount")
+    parser.add_argument("-i", "--input_currency", type=str, required=True, help="")
+    parser.add_argument("-o", "--output_currency", type=str, required=False, help="")
+    args = parser.parse_args()
+    convert(args.amount, args.input_currency, args.output_currency)

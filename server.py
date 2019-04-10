@@ -8,6 +8,6 @@ app.add_api('swagger.yml', strict_validation=True)
 
 # If we're running in stand alone mode, run the application
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5043, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
 

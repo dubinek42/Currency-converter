@@ -5,4 +5,4 @@ services:
     build: .
     image: cc-webapi
     ports:
-      - "5042:5043"
+      - "5000:5000"
