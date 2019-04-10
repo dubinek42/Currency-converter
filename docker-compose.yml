@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  currency:
+    build: .
+    image: cc-webapi
+    ports:
+      - "5042:5000"
