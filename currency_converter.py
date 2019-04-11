@@ -5,7 +5,7 @@ import argparse
 from src.converter import Converter
 
 
-def convert(amount, input_currency, output_currency = ""):
+def convert(amount, input_currency, output_currency):
     try:
         converter = Converter(amount, input_currency, output_currency)
         if converter.check_parameters():
@@ -15,7 +15,7 @@ def convert(amount, input_currency, output_currency = ""):
     except FileNotFoundError:
         print("Cannot find file with currency symbols.")
         exit(-1)
-    
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
