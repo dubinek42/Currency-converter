@@ -203,8 +203,8 @@ class Converter:
             data = symbols_file.read()
         self.symbols = json.loads(data)
         self.amount = amount
-        self.input_currency = self.__symbol_translate(input_currency.upper())
-        self.output_currency = self.__symbol_translate(output_currency.upper())
+        self.input_currency = self.__symbol_translate(input_currency)
+        self.output_currency = self.__symbol_translate(output_currency)
         self.rates = rates
 
     @staticmethod
@@ -216,16 +216,17 @@ class Converter:
             return False
 
     def __symbol_translate(self, s):
+        if s is not None and s != "":
+            s = s.upper()
         if s in self.symbols.keys():
             return self.symbols.get(s)
         return s
 
     def __calculate(self, amount, input_currency, output_currency):
-
         if input_currency == "USD":
             return float(self.rates[output_currency]) * float(amount)
         else:
-            return float(amount) / float(self.rates[input_currency] * float(self.rates[output_currency]))
+            return float(amount) / float(self.rates[input_currency]) * float(self.rates[output_currency])
 
     def check_parameters(self):
         if not self.__is_number(self.amount):
